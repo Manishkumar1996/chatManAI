@@ -1,0 +1,55 @@
+@use 'variables' as *;
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin flex-between {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+@mixin transition-all($duration: 0.2s) {
+    transition: all $duration cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@mixin glass-panel {
+    background: rgba($bg-secondary, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba($border-color, 0.5);
+}
+
+@mixin scrollbar {
+    &::-webkit-scrollbar {
+        width: 6px;
+        height: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: $bg-tertiary;
+        border-radius: $radius-full;
+
+        &:hover {
+            background: lighten($bg-tertiary, 10%);
+        }
+    }
+}
+
+@mixin mobile {
+    @media (max-width: 640px) {
+        @content;
+    }
+}

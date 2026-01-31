@@ -1,0 +1,190 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px);
+    z-index: 100;
+    @include flex-center;
+    padding: $spacing-md;
+}
+
+.modal {
+    background: $bg-secondary;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: $shadow-lg;
+    @include flex-column;
+}
+
+.header {
+    @include flex-between;
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+
+    h2 {
+        font-size: 1.25rem;
+        font-weight: 600;
+    }
+}
+
+.closeBtn {
+    color: $text-secondary;
+    padding: $spacing-xs;
+    border-radius: $radius-md;
+
+    &:hover {
+        background: $bg-tertiary;
+        color: $text-primary;
+    }
+}
+
+.body {
+    padding: $spacing-md;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+}
+
+.field {
+    @include flex-column;
+    gap: $spacing-sm;
+
+    label {
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+}
+
+.providerToggle {
+    display: flex;
+    background: $bg-tertiary;
+    padding: 4px;
+    border-radius: $radius-md;
+    gap: 4px;
+
+    button {
+        flex: 1;
+        padding: $spacing-sm;
+        border-radius: $radius-sm;
+        font-size: 0.9rem;
+        color: $text-secondary;
+        transition: all 0.2s;
+
+        &:hover {
+            color: $text-primary;
+        }
+
+        &.active {
+            background: $bg-secondary;
+            color: $text-primary;
+            box-shadow: $shadow-sm;
+            font-weight: 500;
+        }
+    }
+}
+
+.input,
+.select {
+    width: 100%;
+    padding: $spacing-sm;
+    background: $bg-tertiary;
+    border: 1px solid $border-color;
+    border-radius: $radius-md;
+    color: $text-primary;
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    &:focus {
+        border-color: $accent-primary;
+        outline: none;
+    }
+}
+
+.help {
+    font-size: 0.75rem;
+    color: $text-secondary;
+
+    a {
+        color: $accent-primary;
+        text-decoration: none;
+        @include flex-center;
+        justify-content: flex-start;
+        gap: 4px;
+        display: inline-flex;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.footer {
+    padding: $spacing-md;
+    border-top: 1px solid $border-color;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.saveBtn {
+    @include flex-center;
+    gap: $spacing-sm;
+    background-color: $accent-primary;
+    color: white;
+    padding: $spacing-sm $spacing-md;
+    border-radius: $radius-md;
+    font-weight: 500;
+    transition: background 0.2s;
+
+    &:hover {
+        background-color: $accent-hover;
+    }
+}
+
+.refreshBtn {
+    margin-left: 8px;
+    padding: 8px;
+    border-radius: $radius-md;
+    background: $bg-tertiary;
+    color: $text-secondary;
+    border: 1px solid $border-color;
+
+    &:hover:not(:disabled) {
+        background: $bg-secondary;
+        color: $accent-primary;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+}
+
+.spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.modelRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+
+    select {
+        flex: 1;
+    }
+}

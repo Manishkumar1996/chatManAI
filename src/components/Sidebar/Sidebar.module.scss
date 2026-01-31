@@ -1,0 +1,144 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.sidebar {
+    width: 260px;
+    background-color: $bg-secondary;
+    border-right: 1px solid $border-color;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+
+    &.open {
+        transform: translateX(0);
+    }
+
+    // Desktop: always visible (relative layout handling needed in parent)
+    @media (min-width: 768px) {
+        position: relative;
+        transform: none;
+
+        .closeBtn {
+            display: none;
+        }
+
+        &.closed {
+            width: 0;
+            overflow: hidden;
+            border-right: none;
+        }
+    }
+}
+
+.header {
+    padding: $spacing-md;
+    border-bottom: 1px solid $border-color;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    h2 {
+        font-size: 1rem;
+        font-weight: 600;
+    }
+}
+
+.newChatBtn {
+    margin: $spacing-md;
+    @include flex-center;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+    background-color: $accent-primary;
+    color: white;
+    border-radius: $radius-md;
+    transition: background 0.2s;
+
+    &:hover {
+        background-color: $accent-hover;
+    }
+}
+
+.sessionList {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-sm;
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+}
+
+.sessionItem {
+    padding: $spacing-md;
+    margin-bottom: $spacing-xs;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background 0.2s;
+    position: relative;
+
+    &:hover {
+        background-color: $bg-tertiary;
+
+        .deleteBtn {
+            opacity: 1;
+        }
+    }
+
+    &.active {
+        background-color: rgba($accent-primary, 0.1);
+        color: $accent-primary;
+    }
+
+    h3 {
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin-bottom: 4px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        font-size: 0.75rem;
+        color: $text-secondary;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.deleteBtn {
+    position: absolute;
+    right: 8px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: $text-secondary;
+    opacity: 0;
+    padding: 4px;
+    border-radius: 4px;
+
+    &:hover {
+        background: rgba(255, 0, 0, 0.1);
+        color: #ff4444;
+    }
+
+    // Mobile: always show delete if needed, or maybe requires swipe? 
+    // For simplicity, always show on hover (desktop) or if active?
+}
+
+.overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 40;
+
+    @media (min-width: 768px) {
+        display: none;
+    }
+}

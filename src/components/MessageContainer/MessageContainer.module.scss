@@ -1,0 +1,142 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+    display: flex;
+    gap: $spacing-md;
+    width: 100%;
+    max-width: 48rem; // max-w-3xl
+    margin: 0 auto;
+    padding: $spacing-md 0;
+
+    &.user {
+        flex-direction: row-reverse;
+    }
+}
+
+.avatar {
+    flex-shrink: 0;
+    width: 2rem;
+    height: 2rem;
+    border-radius: $radius-md;
+    @include flex-center;
+
+    .user & {
+        background-color: $bg-tertiary;
+        color: $text-secondary;
+    }
+
+    .assistant & {
+        background: $accent-gradient;
+        color: white;
+    }
+}
+
+.bubble {
+    flex: 1;
+    min-width: 0; // Prevent markdown overflow
+    font-size: 0.9375rem; // 15px
+    line-height: 1.6;
+
+    &.error {
+        color: $error;
+        border: 1px solid rgba($error, 0.2);
+        background: rgba($error, 0.05);
+        padding: $spacing-sm $spacing-md;
+        border-radius: $radius-md;
+    }
+
+    .user & {
+        background-color: $bg-tertiary;
+        color: $text-primary;
+        padding: $spacing-sm $spacing-md;
+        border-radius: $radius-lg;
+        border-bottom-right-radius: $radius-sm;
+    }
+
+    .assistant & {
+        color: $text-primary;
+        padding-top: $spacing-xs; // Align visually with avatar
+    }
+}
+
+.markdown {
+    p {
+        margin-bottom: $spacing-md;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+
+    ul,
+    ol {
+        margin-bottom: $spacing-md;
+        padding-left: $spacing-lg;
+    }
+
+    a {
+        color: $accent-primary;
+        text-decoration: underline;
+
+        &:hover {
+            color: $accent-hover;
+        }
+    }
+}
+
+.inlineCode {
+    background-color: rgba($text-primary, 0.1);
+    padding: 0.1em 0.3em;
+    border-radius: $radius-sm;
+    font-family: $font-code;
+    font-size: 0.85em;
+}
+
+.codeBlock {
+    margin: $spacing-md 0;
+    border-radius: $radius-md;
+    overflow: hidden;
+    background-color: #0d1117; // Specialized code bg
+    border: 1px solid $border-color;
+
+    .codeHeader {
+        background-color: $bg-tertiary;
+        padding: $spacing-xs $spacing-sm;
+        font-size: 0.75rem;
+        color: $text-secondary;
+        font-family: $font-code;
+        text-transform: uppercase;
+    }
+
+    code {
+        display: block;
+        padding: $spacing-md;
+        overflow-x: auto;
+        font-family: $font-code;
+        color: $text-primary;
+        white-space: pre;
+    }
+}
+
+.cursor {
+    display: inline-block;
+    width: 0.5em;
+    height: 1em;
+    background-color: $accent-primary;
+    margin-left: 2px;
+    vertical-align: text-bottom;
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+}

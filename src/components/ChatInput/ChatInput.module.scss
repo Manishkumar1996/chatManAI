@@ -1,0 +1,73 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+    width: 100%;
+    max-width: 48rem;
+    margin: 0 auto;
+    padding: $spacing-md;
+    background: linear-gradient(to top, $bg-primary 80%, transparent);
+}
+
+.inputWrapper {
+    position: relative;
+    background: $bg-secondary;
+    border-radius: $radius-lg;
+    border: 1px solid $border-color;
+    box-shadow: $shadow-lg;
+    transition: border-color 0.2s;
+
+    &:focus-within {
+        border-color: $accent-primary;
+    }
+}
+
+.textarea {
+    width: 100%;
+    min-height: 52px;
+    max-height: 200px;
+    padding: $spacing-md;
+    padding-right: 3.5rem; // Space for button
+    background: transparent;
+    border: none;
+    color: $text-primary;
+    font-family: inherit;
+    font-size: 1rem;
+    line-height: 1.5;
+    resize: none;
+    outline: none;
+
+    &::placeholder {
+        color: $text-secondary;
+    }
+}
+
+.sendButton {
+    position: absolute;
+    right: $spacing-sm;
+    bottom: $spacing-sm;
+    padding: $spacing-sm;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    background: transparent;
+    transition: all 0.2s;
+
+    &:hover:not(:disabled) {
+        background: $bg-tertiary;
+        color: $text-primary;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: default;
+    }
+
+    &.loading {
+        color: $error;
+
+        &:hover {
+            background: rgba($error, 0.1);
+            color: $error;
+        }
+    }
+}

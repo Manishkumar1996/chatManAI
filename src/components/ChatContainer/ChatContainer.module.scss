@@ -1,0 +1,51 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100%; // Takes full height of Layout
+    position: relative;
+}
+
+.messagesArea {
+    flex: 1;
+    overflow-y: auto;
+    padding: $spacing-md;
+    // Account for input height to prevent content being hidden
+    padding-bottom: 2rem;
+
+    @include scrollbar;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    max-width: 48rem;
+    margin: 0 auto;
+}
+
+.emptyState {
+    height: 100%;
+    @include flex-center;
+    flex-direction: column;
+    color: $text-secondary;
+    text-align: center;
+
+    h1 {
+        font-size: 1.5rem;
+        color: $text-primary;
+        margin-bottom: $spacing-sm;
+    }
+}
+
+.inputArea {
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 10;
+}
+
+.spacer {
+    height: $spacing-md;
+}

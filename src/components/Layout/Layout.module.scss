@@ -1,0 +1,109 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins' as *;
+
+.layout {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: $bg-primary;
+    color: $text-primary;
+    overflow: hidden;
+}
+
+.contentWrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    width: 100%; // Ensure it takes full width when sidebar is hidden/mobile
+
+
+    @media (min-width: 768px) {
+        .menuIconButton {
+            display: none;
+        }
+    }
+}
+
+.header {
+    height: 60px;
+    border-bottom: 1px solid $border-color;
+    padding: 0 $spacing-md;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: $bg-secondary;
+    flex-shrink: 0;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+.menuIcon {
+    cursor: pointer;
+    color: $text-secondary;
+
+    &:hover {
+        color: $text-primary;
+    }
+}
+
+.logo {
+    font-weight: 600;
+    font-size: 1.125rem;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    gap: $spacing-md;
+}
+
+.iconBtn {
+    padding: $spacing-sm;
+    border-radius: $radius-md;
+    color: $text-secondary;
+    transition: all 0.2s;
+
+    &:hover {
+        background-color: $bg-tertiary;
+        color: $text-primary;
+    }
+}
+
+.newChatBtn {
+    @include flex-center;
+    gap: $spacing-sm;
+    background-color: $accent-primary;
+    color: white;
+    padding: $spacing-xs $spacing-md;
+    border-radius: $radius-md;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: background-color 0.2s;
+
+    &:hover {
+        background-color: $accent-hover;
+    }
+
+    // Hide text on mobile to save space
+    @media (max-width: 640px) {
+        .btnText {
+            display: none;
+        }
+
+        padding: $spacing-xs;
+    }
+}
+
+.main {
+    flex: 1;
+    overflow: hidden; // Important for ChatContainer scrolling
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
