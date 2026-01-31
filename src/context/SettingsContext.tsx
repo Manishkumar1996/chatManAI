@@ -7,7 +7,7 @@ export interface Settings {
 }
 
 export const DEFAULT_SETTINGS: Settings = {
-    apiKey: 'AIzaSyABqUyuP1g-5CHQCUIO2u2OfL5oZttO5Io',
+    apiKey: import.meta.env.VITE_GEMINI_API_KEY || '',
     model: 'gemini-2.5-flash',
     provider: 'gemini',
 };
