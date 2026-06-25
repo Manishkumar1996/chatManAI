@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({
                     }}
                 >
                     <Plus size={18} />
-                    New Chat
+                    Start New Chat
                 </button>
 
                 <div className={styles.sessionList}>
