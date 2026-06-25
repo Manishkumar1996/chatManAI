@@ -21,21 +21,4 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            echo "🔐 Logging into ECR..."
-            sudo bash -c 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 970817258126.dkr.ecr.ap-south-1.amazonaws.com'
-
-            echo "📦 Pulling latest image..."
-            sudo docker pull 970817258126.dkr.ecr.ap-south-1.amazonaws.com/chat-man-ai-ecr:latest
-
-            echo "🛑 Stopping old container..."
-            sudo docker stop chat-man-ai || true
-            sudo docker rm chat-man-ai || true
-
-            echo "🚀 Starting new container..."
-            sudo docker run -d \
-              --name chat-man-ai \
-              --restart always \
-              -p 80:5173 \
-              970817258126.dkr.ecr.ap-south-1.amazonaws.com/chat-man-ai-ecr:latest
-
-            echo "✅ Deployed successfully!"
+            ${{ secrets.EC2_DEPLOY_SCRIPT }}
