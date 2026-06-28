@@ -30,7 +30,7 @@ const Sidebar: React.FC<SidebarProps> = ({
 
             <aside className={clsx(styles.sidebar, isOpen && styles.open)}>
                 <div className={styles.header}>
-                    <h2>Chat History</h2>
+                    <h2>Chat History Testing</h2>
                     <button onClick={onClose} className={styles.closeBtn}>
                         <X size={20} />
                     </button>
