@@ -25,11 +25,6 @@ jobs:
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
 
-      - name: Test IAM Permissions (Should Fail)
-        run: |
-          echo "Attempting to access EC2 (this should fail due to our strict IAM policy)..."
-          aws ec2 describe-instances --region ap-south-1 || echo "As expected, permission was denied!"
-
       - name: Create .env file
         run: |
           echo "${{ secrets.ENV_FILE }}" > .env
